@@ -56,9 +56,15 @@ M.conf_build = function()
 end
 
 M.test = function()
+    local filename = "/tmp/cproj_log.tlog"
 
     -- Create window to store tests.
-    vim.cmd("vnew")
+    if vim.fn.filereadable(filename) == 1 then
+        -- remove file to create it again.
+        vim.cmd("!".."rm "..filename)
+    end
+    vim.cmd("vnew "..filename)
+
     local bufnr = vim.api.nvim_get_current_buf()
     local path_test = ProjData.get_build_path(CurrentProject)
     vim.fn.jobstart({"ctest", "--verbose","--test-dir", path_test},
@@ -66,6 +72,7 @@ M.test = function()
         stdout_buffered = true,
         on_stdout = function(_, data)
             if data then
+                -- Have file 
                 vim.api.nvim_buf_set_lines(bufnr, 0, 0, false, data)
             end
         end,
