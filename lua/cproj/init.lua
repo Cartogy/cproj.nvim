@@ -16,7 +16,7 @@ end
 M.setup = function(opts)
     local root_dir = Utils.root_directory()
 
-    if root_dir == "" then
+    if root_dir == "" then  -- No GIT
         local comp = ProjData.create_compilation("make", {} )
         -- local conf = ProjData.create_configuration("cmake", {"-S", root_dir, "-B", build_path})
         ProjData.set_root_dir(CurrentProject, "./")

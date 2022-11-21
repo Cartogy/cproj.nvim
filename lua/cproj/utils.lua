@@ -20,7 +20,7 @@ end
 M.root_directory = function()
     local status, root_dir = has_git_root('x')
     if status == NOROOT then
-        print("ERROR: Not git repository")
+        -- No GIT
         return ""
     else
         return root_dir
