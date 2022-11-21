@@ -17,6 +17,14 @@ M.setup = function(opts)
     local root_dir = Utils.root_directory()
 
     if root_dir == "" then
+        local comp = ProjData.create_compilation("make", {} )
+        -- local conf = ProjData.create_configuration("cmake", {"-S", root_dir, "-B", build_path})
+        ProjData.set_root_dir(CurrentProject, "./")
+        ProjData.set_configure_build(CurrentProject,{})
+        ProjData.set_debugger(CurrentProject, run_gdb)
+        ProjData.set_compilation(CurrentProject, comp)
+        ProjData.set_build_path(CurrentProject, "./")
+
         return
     end
 
@@ -92,7 +100,7 @@ vim.api.nvim_create_user_command("CCompile", function()
 end, {})
 
 vim.api.nvim_create_user_command("CConf", function()
-    M.compile()
+    M.conf_build()
 end, {})
 
 

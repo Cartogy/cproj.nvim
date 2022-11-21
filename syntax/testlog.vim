@@ -17,11 +17,16 @@ syntax match testlogTest "\v[A-Z][a-zA-Z0-9]+\.[A-Z][a-zA-Z]+"
 
 syntax match testlogFail "\v\[\ *FAILED\ *\]"
 
+syntax match testlogBegin "\v\[\=+\]"
+syntax match testlogSpace "\v\[-+\]"
+
 highlight link testlogRun Debug
 highlight link testlogOk Function
 highlight link testlogPass Function
 highlight link testlogTest Type
 highlight link testlogFail Error
+highlight link testlogBegin Define
+highlight link testlogSpace Debug
 
 " syntax match potionOperator "\v\*"
 " syntax match potionOperator "\v/"
