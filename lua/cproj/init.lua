@@ -39,6 +39,8 @@ M.setup = function(opts)
     local build_path = root_dir .. relative_build_path
 
     local comp = ProjData.create_compilation("cmake", {"--build", build_path})
+    -- set make command
+    vim.opt.makeprg = ProjData.build_cmd(comp)
     local conf = ProjData.create_configuration("cmake", {"-S", root_dir, "-B", build_path})
 
     ProjData.set_root_dir(CurrentProject, root_dir)
