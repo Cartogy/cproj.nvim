@@ -8,6 +8,9 @@ endif
 " highlight link potionComment Comment
 " highlight link potionKeyword Keyword
 " 
+syntax keyword testlogFailed FAILED
+
+syntax match testlogFailed "\v\(Failed\)"
 syntax match testlogRun "\v\[\ *RUN\ *\]"
 syntax match testlogOk "\v\[\ *OK\ *\]"
 
@@ -20,6 +23,10 @@ syntax match testlogFail "\v\[\ *FAILED\ *\]"
 syntax match testlogBegin "\v\[\=+\]"
 syntax match testlogSpace "\v\[-+\]"
 
+syntax region testlogErrorInfo start=/\v\[\ *RUN\ *\].*\n.* Failure/ end=/\v\[\ *FAILED\ *\]/ 
+" syntax match testlogMe "\v\[\ *RUN\ *\].*"
+
+highlight link testlogFailed Exception
 highlight link testlogRun Debug
 highlight link testlogOk Function
 highlight link testlogPass Function
@@ -27,6 +34,8 @@ highlight link testlogTest Type
 highlight link testlogFail Error
 highlight link testlogBegin Define
 highlight link testlogSpace Debug
+highlight link testlogErrorInfo Exception
+"highlight link testlogMe Exception
 
 " syntax match potionOperator "\v\*"
 " syntax match potionOperator "\v/"
